@@ -1,0 +1,69 @@
+<div class="container" ng-style="{'background-image':'url(https://i.groupme.com/67x100.png.a3251ab4cf11462e896445e4bfb14838.large)', 'background-color': '#5051c5', 'color' : '#ffffff'}">
+Profile
+
+	<input type="file" ng-model="edit.user.pic" class="form-control" file-upload="edit.user.pic"/>
+	<button type="radio" class="btn btn-default" ng-click="edit.change()"> Update </button> <br>
+	<img height="300" width="300"  ng-src="{{'../../assets/images/' +edit.user.pic}}" alt="Description" /><br>
+
+	<div class="form-group">
+		<label>User Name</label>
+		<input class="form-control" ng-model="edit.user.userName">
+	</div>
+
+	<div ng-show="edit.user.type == 'Vendor'">
+    <div class="form-group">
+        <label for="accountype"> Service </label>
+         <a ng-style="{'color' : '#000000'}"> 
+        <select name="accountype" ng-model="edit.user.serviceType">
+           <option ng-repeat="type in edit.servicetypes" value="{{type}}">  
+            {{type}}
+           </option>
+        </select>
+        </a>
+    </div>
+
+    <div class="form-group">
+        <label>Service Description</label>
+        <input type="text" class="form-control" ng-model="edit.user.description">
+    </div>
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" class="form-control" ng-model="edit.user.phoneNumber">
+    </div>
+    <div class="form-group">
+        <label>Social Media</label>
+        <input type="text" class="form-control" ng-model="edit.user.socialMedia">
+    </div>
+    <div>
+    Availability <br>
+    <div ng-repeat="(index1, day) in edit.days" ng-style="{'overflow' : 'hidden', 'width' : '2000px'}">
+    {{day}}
+    <div ng-style="{'overflow' : 'hidden', 'width' : '2000px'}">
+    	<div ng-repeat="(index2, hour) in edit.hours" ng-style=" {'float' : 'left', 'width' : '45px', 'height' : '50px'}" >
+    	<div ng-style="edit.user.availabilty[index1][index2] == true ? {'color':'#000000'} : {'color':'#ff0000'}">
+    <button ng-click="edit.set(index1, index2)"> {{hour}} </button> 
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    Product/Service Showcase
+	<input type="file" ng-model="edit.tempPic" class="form-control" file-upload="edit.tempPic"/>
+    <button class= "btn btn-default" ng-disabled="edit.pics.length == 5" ng-click="edit.addpic()">Add Picture </button> <br>
+    <div ng-repeat="(value, pic) in edit.user.pics">
+    	<div class="col-md-2">
+    		<img height="100" width="100" ng-src="{{'../../assets/images/' +pic}}" alt="Description" /><br>
+    		<button ng-click="edit.deletepic(value)">X</button>
+    	</div>
+    </div>
+    <br>
+    <br>
+
+	</div>
+	<br>
+ </div>
+
+	<div class="col-md-8">
+    <button type="radio" class="btn btn-default" ng-click="edit.updateuser()"> Submit Changes</button> <br>
+    </div>

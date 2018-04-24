@@ -1,0 +1,81 @@
+<div class="container" ng-style="{'background-image':'url(https://i.groupme.com/67x100.png.a3251ab4cf11462e896445e4bfb14838.large)', 'background-color': '#5051c5' , 'height' : '5000px', 'width' : '2000px'}">
+<div ng-style="{'color' : '#ffffff'}">
+	<label for="quotas"> Service Type </label>
+	<div ng-repeat="type in search.types">
+	<input type="radio" name="quotas" ng-model="search.vendortype" value="{{type}}">
+	  <div style="display:inline" > 
+	     {{type}}
+	  </div>
+
+	</div>
+	<button ng-style="{'color' : '#00ff00'}" ng-click="search.search()" > Search</button>
+	<br>
+	{{search.error}}
+	<div class="panel panel-default" ng-repeat="user in search.results"> 
+	  <div class="panel-heading"> {{user.userName}} </div>
+	  <div class="panel-body" ng-style="{'background-color' : '#5051c5', 'border' : '0'}">
+	  	<div class="row">
+            <div class="col-md-6">
+            	<img height="100" width="100" ng-src="{{'../../assets/images/' +user.pic}}" alt="Description" />
+            </div>
+            <div class="col-md-6" ng-style="{'color' : '#000000'}">
+            {{user.serviceType}} <br>
+			{{user.socialMedia}} <br>
+			{{user.description}} <br>
+
+			<button ng-click="search.aval(user)"> Book Appointment </button>
+			<button ng-click="search.pics(user)"> View Samples </button>
+			<button ng-click="search.revs(user)"> View Reviews </button>
+			</div>
+        </div> 
+        <div ng-show="user.pictures == true" class="row">
+	        <div ng-repeat="(value, pic) in user.pics">
+	    	<div class="col-md-2">
+	    		<img height="100" width="100" ng-src="{{'../../assets/images/' +pic}}" alt="Description" /><br>
+	    	</div>
+	    	</div>
+        </div>
+        <div ng-show="user.avail == true" class="row">
+        Availability <br>
+		    <div ng-repeat="(index1, day) in search.days" ng-style="{'overflow' : 'hidden', 'width' : '2000px'}">
+		    {{day}}
+		    <div ng-style="{'overflow' : 'hidden', 'width' : '2000px'}">
+		    	<div ng-repeat="(index2, hour) in search.hours" ng-style=" {'float' : 'left', 'width' : '45px', 'height' : '50px'}" >
+		    	<div ng-style="user.availabilty[index1][index2] == true ? {'color':'#000000'} : {'color':'#ff0000'}">
+		    <button> {{hour}} </button> 
+        </div>
+	  </div>
+	</div>
+
+	</div>
+			<div ng-style="{'display' : 'inline-block'}">
+			    Create Appointment
+			    <select ng-style="{'color' : '#000000'}" ng-model="search.appointday">
+		           <option ng-repeat="(index, day) in search.days" value="{{index}}">  
+		            {{day}}
+		           </option>
+		        </select>
+		        <select ng-style="{'color' : '#000000'}" ng-model="search.appointhour">
+		           <option ng-repeat="(index, hour) in search.hours" value="{{index}}">  
+		            {{hour}}
+		           </option>
+		        </select>
+		        </div>
+		        <button ng-disabled="user.availabilty[search.appointday][search.appointhour] == false" ng-click="search.createAppoint(user)"> Create Appointment </button>
+		        <span ng-show="user.availabilty[search.appointday][search.appointhour] == false"> Time Not Available </span>
+	</div>
+	<div ng-show="user.revi == true" class="row">
+		<span ng-show="user.reviews.length == 0"> No Reviews Have been written</span>
+		<div class="panel panel-default" ng-repeat="review in user.reviews"> 
+		  <div class="panel-heading"> {{review.Title}} </div>
+		  <div class="panel-body" ng-style="{'background-color' : '#00ff00', 'border' : '0'}">
+
+		  {{review.Text}}
+		  </div>
+		  </div>
+		  </div>
+
+
+	</div>
+	</div>
+	</div>

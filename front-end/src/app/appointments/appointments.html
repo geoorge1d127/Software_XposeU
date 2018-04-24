@@ -1,0 +1,22 @@
+<div class="container" ng-style="{'background-image':'url(https://i.groupme.com/67x100.png.a3251ab4cf11462e896445e4bfb14838.large)', 'background-color': '#5051c5'}">
+<div class="panel panel-default" ng-repeat="app in appointments.apps" > 
+  <div class="panel-heading"> {{appointments.user.userName}} </div>
+  <div class="panel-body" ng-style="{'background-color' : '#5051c5', 'border' : '0', 'color' : '#ffffff'}">
+  Appointment on {{appointments.days[app.Date]}} at {{appointments.hours[app.Time]}} with {{app.other}}
+  <button ng-click="appointments.toggle()" ng-show="appointments.user.type == 'User'"> Write Review </button>
+
+  <div ng-show="appointments.rev == true" ng-style="{'color' : '#000000'}">
+  	<div class="form-group">
+		<label>Review Title</label>
+		<input class="form-control" ng-model="appointments.review.Title">
+	</div>
+	<div class="form-group">
+		<label>Review</label>
+		<input class="form-control" ng-model="appointments.review.Text">
+	</div>
+	<button ng-click="appointments.createReview(app.Vendorid)"> Submit review</button>
+  </div>
+  </div>
+  </div>
+  </div>
+</div>

@@ -1,14 +1,18 @@
-<nav ng-controller="NavbarController as nav" class="navbar navbar-static-top navbar-inverse">
+<nav ng-controller="NavbarController as nav" class="navbar-static-top navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header" >
       
     </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-      <ul class="nav navbar-nav">
-        <li class="active"><a ng-href="#">Home</a></li>
+    <div  ng-style="{'background-image':'url(https://i.groupme.com/67x100.png.a3251ab4cf11462e896445e4bfb14838.large)', 'background-color': '#5051c5'}" class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+      <ul class="nav navbar-nav" ng-style="{'border-color': '#5051c5'}">
+        <li ><a ng-href="#">
+      <img ng-src="https://i.groupme.com/284x232.jpeg.677440747098476f8e5baa25f8ae07a6.large" width="30" height="30" /></a></li>
         <li ng-hide="nav.isAuthenticated()"><a ui-sref="auth">Login</a></li>
-        <li ng-show="nav.isAuthenticated()"><a ng-click="nav.logout()">Logout</a></li>
+        <li ng-show="nav.isAuthenticated()"><a ui-sref="search">Search</a></li>
+        <li ng-show="nav.isAuthenticated()"><a ui-sref="appointments">Appointments</a></li>
+        <li ng-show="nav.isAuthenticated()"><a ui-sref="edit">Edit Profile</a></li>
+        <li ng-show="nav.isAuthenticated()"><a ng-href="#" ng-click="nav.logout()">Logout</a></li>
       </ul>
     </div>
   </div>
